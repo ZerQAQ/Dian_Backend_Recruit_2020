@@ -17,11 +17,19 @@ article:
 | id      | bigint        | NO   | PRI | NULL    |       |
 | uid     | bigint        | YES  | MUL | NULL    |       | //与user.id有外键约束
 | title   | varchar(256)  | YES  |     | NULL    |       |
-| content | varchar(1024) | YES  |     | NULL    |       |
+| content | varchar(1024) | YES  |     | NULL    |       | //其实更倾向于用文件存文章 不过只写个demo就怎么方便怎么来好了
 +---------+---------------+------+-----+---------+-------+
 ```
 
 ## API
+
+### 异常retc:
+
+- -1 jwt fail
+- -2 source not esixt
+- -3 server error
+- -4 format error
+- -5 id conflict ID已经被注册
 
 ### POST /api/v1/login
 用户登录
