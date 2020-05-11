@@ -26,8 +26,7 @@ article:
 ### 异常retc:
 
 - -1 jwt fail
-- -2 source not esixt
-- -3 server error
+- -2 source not exist
 - -4 format error
 - -5 id conflict ID已经被注册
 
@@ -67,7 +66,7 @@ article:
 }
 ```
 
-### POST /api/v1/article?tyle=new
+### POST /api/v1/article
 上传一篇文章
 ```
 {
@@ -84,7 +83,7 @@ article:
 }
 ```
 
-### POST /api/v1/article?type=modify
+### POST /api/v1/article:id?type=modify
 修改一篇文章
 ```
 {
@@ -102,12 +101,11 @@ article:
 }
 ```
 
-### POST /api/v1/article?type=delete
+### POST /api/v1/article:id?type=delete
 删除一篇文章
 ```
 {
-	jwt: "header.body.sign",
-	id: 12
+	jwt: "header.body.sign"
 }
 ```
 ```
