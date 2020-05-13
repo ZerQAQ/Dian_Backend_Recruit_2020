@@ -1,2 +1,5 @@
 /test.py
 *.http
+*.pdf
+/venv/
+/__pycache__/

@@ -6,7 +6,7 @@ user:
 | Field    | Type        | Null | Key | Default | Extra |
 +----------+-------------+------+-----+---------+-------+
 | id       | bigint      | NO   | PRI | NULL    |       |
-| password | varchar(32) | YES  |     | NULL    |       |
+| password | varchar(32) | YES  |     | NULL    |       | //存的是密码的md5 不直接存明文
 | nick     | varchar(16) | YES  |     | NULL    |       |
 +----------+-------------+------+-----+---------+-------+
 
@@ -17,7 +17,7 @@ article:
 | id      | bigint        | NO   | PRI | NULL    |       |
 | uid     | bigint        | YES  | MUL | NULL    |       | //与user.id有外键约束
 | title   | varchar(256)  | YES  |     | NULL    |       |
-| content | varchar(1024) | YES  |     | NULL    |       | //其实更倾向于用文件存文章 不过只写个demo就怎么方便怎么来好了
+| content | varchar(1024) | YES  |     | NULL    |       | //其实我更倾向于用文件存文章 不过只写个demo就怎么方便怎么来好了
 +---------+---------------+------+-----+---------+-------+
 ```
 
@@ -118,6 +118,8 @@ article:
 
 ### GET /api/v1/article
 获取一个用户的所有文章
+其实最好做下分页，例如一次请求返回第1~20篇，下一次请求返回21~30篇
+不过先做个简单的好了
 ```
 {
 	jwt: "header.body.sign"

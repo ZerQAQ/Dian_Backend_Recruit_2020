@@ -7,12 +7,13 @@ sql = {
     'charset': 'utf8mb4'
 }
 
-#是否开启flask的debug模式
+# 开放的IP和端口
+host = '127.0.0.1'
+port = 8080
+# 是否开启flask的debug模式
 debug_mod = False
 # md5加密的盐 数据库中密码不直接存明文
 md5_salt = "salt"
-# 日志输出目录
-log_dir = "log"
 # jwt生命周期，单位秒
 jwt_lifetime = 3600
 # jwt头部

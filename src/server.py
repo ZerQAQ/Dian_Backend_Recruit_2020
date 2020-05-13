@@ -70,6 +70,7 @@ def respond(cmd, data = {}):
             "data": data
         }
 
+    print(ret)
     return flask.jsonify(ret)
 
 def make_jwt(id, blog_type):
@@ -80,7 +81,7 @@ def make_jwt(id, blog_type):
         'id': id,
         'blog_type': blog_type
     }
-    return jwt.encode(payload, jwt_key, algorithm = config.jwt_header["alg"])
+    return str(jwt.encode(payload, jwt_key, algorithm = config.jwt_header["alg"]), encoding='utf8')
 
 def parse_jwt(jwt_string):
     try:
@@ -93,6 +94,7 @@ def parse_jwt(jwt_string):
     else:
         return data
 
+# 传入请求的消息体 对里面的jwt进行验证
 # 如果以后要改成session验证，就直接改这个函数就可以了
 def verify(data):
     if 'jwt' not in data:
@@ -226,6 +228,14 @@ def get_article(data, database, uid, aid):
     else:
         return respond(OK, article)
 
+@app.route('/test')
+def test():
+    return 'Hello World!'
+
+def main():
+    init_database()
+    return app
+
 if __name__ == '__main__':
     init_database()
-    app.run(host = "127.0.0.1", port = 8080, debug = config.debug_mod)
+    app.run(host = config.host, port = config.port, debug = config.debug_mod)
