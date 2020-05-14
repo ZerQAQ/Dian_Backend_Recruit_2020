@@ -1,8 +1,8 @@
 import Vue from 'vue'
 
 export var ajax = {
-	root: 'http://121.199.42.103/api/v1',
-	//root: '/api/v1',
+	//root: 'http://121.199.42.103/api/v1',
+	root: '/api/v1',
 	OK: 1,
 	IDCONFLICT: -5,
 	NOTEXIST: -2,

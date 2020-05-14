@@ -28,17 +28,7 @@
 				area: '中国',
 				blog_type: "China",
 				sheetVisible: false,
-				action: [{
-					name: '中国',
-					method: () => { this.blog_type = 'China'; this.area = '中国' }
-				}, {
-					name: '美国',
-					method: () => { this.blog_type = 'USA'; this.area = '美国' }
-				}, {
-					name: '日本',
-					method: () => { this.blog_type = 'Japan'; this.area = '日本' }
-				}
-				]
+				action: []
 			}
 		},
 		methods: {
@@ -74,7 +64,15 @@
 			reg: function () {
 				this.$router.push('/reg')
 			}
-		}
+		},
+		beforeMount() {
+			for (elm in config.tables){
+				this.action.push({
+					name: elm[0],
+					method: () => {this.blog_type = elm[1]; this.area = elm[0] }
+				})
+			}
+		},
 	}
 </script>
 
