@@ -29,6 +29,7 @@ article:
 - -2 source not exist
 - -4 format error
 - -5 id conflict ID已经被注册
+- -6 帐号或密码错误
 
 ### POST /api/v1/login
 用户登录
@@ -66,11 +67,10 @@ article:
 }
 ```
 
-### POST /api/v1/article
+### POST /api/v1/article?jwt=
 上传一篇文章
 ```
 {
-	jwt: "header.body.sign",
 	title: "qwq",
 	content: "xwx"
 }
@@ -83,12 +83,10 @@ article:
 }
 ```
 
-### POST /api/v1/article:id?type=modify
+### POST /api/v1/article:id?type=modify?jwt=
 修改一篇文章
 ```
 {
-	jwt: "header.body.sign",
-	id: 12,
 	title: "OvO",
 	content: "fox"
 }
@@ -101,12 +99,9 @@ article:
 }
 ```
 
-### POST /api/v1/article:id?type=delete
+### POST /api/v1/article:id?type=delete?jwt=
 删除一篇文章
 ```
-{
-	jwt: "header.body.sign"
-}
 ```
 ```
 {
@@ -116,14 +111,11 @@ article:
 }
 ```
 
-### GET /api/v1/article
+### GET /api/v1/article?jwt=
 获取一个用户的所有文章
 其实最好做下分页，例如一次请求返回第1~20篇，下一次请求返回21~30篇
 不过先做个简单的好了
 ```
-{
-	jwt: "header.body.sign"
-}
 ```
 ```
 {
@@ -145,12 +137,9 @@ article:
 }
 ```
 
-### GET /api/v1/article/:id 
+### GET /api/v1/article/:id?jwt=
 获取ID为:id的文章
 ```
-{
-	jwt: "header.body.sign"
-}
 ```
 ```
 {

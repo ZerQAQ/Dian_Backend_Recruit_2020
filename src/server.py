@@ -6,7 +6,7 @@ import time
 import os
 import jwt
 
-app = flask.Flask(__name__)
+app = flask.Flask(__name__, static_url_path='')
 
 OK = 1
 JWT_FAIL = -1
@@ -96,11 +96,8 @@ def parse_jwt(jwt_string):
 
 # 传入请求的消息体 对里面的jwt进行验证
 # 如果以后要改成session验证，就直接改这个函数就可以了
-def verify(data):
-    if 'jwt' not in data:
-        return VERIFY_FAIL
-    else:
-        return parse_jwt(data['jwt'])
+def verify(jwt):
+    return parse_jwt(jwt)
 
 @app.route('/api/v1/user', methods=["POST"])
 def post_user():
@@ -159,9 +156,14 @@ def post_login():
 
 def pre(func):
     def warpper(*args, **kwargs):
-        data = json.loads(flask.request.get_data(as_text=True))
+        print('doing pre')
+        try:
+            data = json.loads(flask.request.get_data(as_text=True))
+        except:
+            data = {}
+        jwt = flask.request.args.get("jwt")
 
-        verification = verify(data)
+        verification = verify(jwt)
         if verification == VERIFY_FAIL:
             return respond(JWT_FAIL)
 
@@ -231,10 +233,6 @@ def get_article(data, database, uid, aid):
 @app.route('/test')
 def test():
     return 'Hello World!'
-
-def main():
-    init_database()
-    return app
 
 if __name__ == '__main__':
     init_database()

@@ -11,7 +11,7 @@ sql = {
 host = '127.0.0.1'
 port = 8080
 # 是否开启flask的debug模式
-debug_mod = False
+debug_mod = True
 # md5加密的盐 数据库中密码不直接存明文
 md5_salt = "salt"
 # jwt生命周期，单位秒
