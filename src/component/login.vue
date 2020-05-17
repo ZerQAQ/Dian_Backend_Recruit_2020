@@ -66,10 +66,11 @@
 			}
 		},
 		beforeMount() {
-			for (elm in config.tables){
+			for (let index in config.tables){
+				let elm = config.tables[index]
 				this.action.push({
 					name: elm[0],
-					method: () => {this.blog_type = elm[1]; this.area = elm[0] }
+					method: () => { this.blog_type = elm[1]; this.area = elm[0] }
 				})
 			}
 		},
@@ -80,12 +81,5 @@
 	#app {
 		width: 95%;
 		margin-left: 2.5%;
-	}
-
-	.btn {
-		display: flex;
-		justify-content: space-between;
-		margin-left: 25%;
-		width: 50%;
 	}
 </style>

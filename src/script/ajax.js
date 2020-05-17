@@ -54,5 +54,5 @@ export var ajax = {
 		return Vue.http.post(
 			this.root + '/article/' + id.toString() + '?jwt=' + jwt + '&type=delete',
 		)
-	},
+	}, 
 }

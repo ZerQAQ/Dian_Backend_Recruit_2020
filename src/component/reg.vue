@@ -40,7 +40,6 @@
 					"id": parseInt(this.id),
 					"password": this.pwd.toString()
 				}, this.blog_type).then(respond => {
-					console.log(respond)
 					let retc = respond.body.retc
 					if (retc == ajax.IDCONFLICT) {
 						MessageBox.alert('此帐号已经被注册！', '提示')
@@ -63,7 +62,8 @@
 			}
 		},
 		beforeMount() {
-			for (elm in config.tables){
+			for (let index in config.tables){
+				let elm = config.tables[index]
 				this.action.push({
 					name: elm[0],
 					method: () => {this.blog_type = elm[1]; this.area = elm[0] }
